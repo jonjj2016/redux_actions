@@ -10,7 +10,16 @@
     "type": "git",
     "url": "git+https://github.com/jonjj2016/redux_actions.git"
   },
-  "keywords": [],
+  "keywords": [
+    "saga",
+    "redux-saga",
+    "redux",
+    "react",
+    "actions",
+    "react-redux",
+    "redux-saga",
+    "state"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
