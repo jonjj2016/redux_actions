@@ -2,13 +2,14 @@
 
 ### Examples
 
+#### CRUD ACTIONS
+
 ```JS
 import { initActions } from 'react_actions_generator';
 
 const [types, actions] = initActions({
   type: 'projects',
   loading: true,
-  action: 'get',
   crud: true,
 })
 
@@ -65,6 +66,32 @@ create_start: [Function (anonymous)],
   find_success: [Function (anonymous)],
   find_failed: [Function (anonymous)],
   find_loading: [Function (anonymous)]
+```
+
+```JS
+import { initActions } from 'react_actions_generator';
+
+const [types, actions] = initActions({
+  type: 'projects',
+  loading: true,
+  action: 'get'
+})
+
+// result
+
+{
+  GET_START: 'GET_PROJECTS_START',
+  GET_SUCCESS: 'GET_PROJECTS_SUCCESS',
+  GET_FAILED: 'GET_PROJECTS_FAILED',
+  GET_LOADING: 'GET_PROJECTS_LOADING'
+}
+{
+  get_start: [Function (anonymous)],
+  get_success: [Function (anonymous)],
+  get_failed: [Function (anonymous)],
+  get_loading: [Function (anonymous)]
+}
+
 ```
 
 # Custom Actions
