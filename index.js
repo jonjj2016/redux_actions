@@ -83,7 +83,7 @@ const generateActions = ({
     action: action.toUpperCase(),
     crud,
     loading,
-    method: method.toUpperCase(),
+    method: method ? method.toUpperCase() : null,
     unique,
   })
   const actions = actionGen(types)
