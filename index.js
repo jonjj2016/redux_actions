@@ -32,13 +32,13 @@ const newTypeGen = ({ action, crud, loading, method, unique }) => {
   let obj = {}
   Methods.forEach((item) => {
     let block = {
-      [`${unique ? action + '_' : ''}${item}_START`]: `${item}_${action}_START`,
-      [`${
+      [`${item}_${unique ? action + '_' : ''}START`]: `${item}_${action}_START`,
+      [`${item}_${
         unique ? action + '_' : ''
-      }${item}_SUCCESS`]: `${item}_${action}_SUCCESS`,
-      [`${
+      }SUCCESS`]: `${item}_${action}_SUCCESS`,
+      [`${item}_${
         unique ? action + '_' : ''
-      }${item}_FAILED`]: `${item}_${action}_FAILED`,
+      }FAILED`]: `${item}_${action}_FAILED`,
     }
     if (loading) {
       block[`${item}_LOADING`] = `${item}_${action}_LOADING`
