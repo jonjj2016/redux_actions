@@ -22,23 +22,26 @@ const actionGen = (arr) => {
   return actionObj
 }
 
-const newTypeGen = ({ constant, crud, loading, action }) => {
-  let Types = ['CREATE', 'PATCH', 'REMOVE', 'GET', 'FIND']
-  if (!crud && action) {
-    console.log(crud)
-    Types = [action]
+const newTypeGen = ({ action, crud, loading, method, unique }) => {
+  let Methods = ['CREATE', 'PATCH', 'REMOVE', 'GET', 'FIND']
+  if (!crud && method) {
+    Methods = [method]
   }
   let TypeArr = []
 
   let obj = {}
-  Types.forEach((item) => {
+  Methods.forEach((item) => {
     let block = {
-      [`${item}_START`]: `${item}_${constant}_START`,
-      [`${item}_SUCCESS`]: `${item}_${constant}_SUCCESS`,
-      [`${item}_FAILED`]: `${item}_${constant}_FAILED`,
+      [`${unique ? action + '_' : ''}${item}_START`]: `${item}_${action}_START`,
+      [`${
+        unique ? action + '_' : ''
+      }${item}_SUCCESS`]: `${item}_${action}_SUCCESS`,
+      [`${
+        unique ? action + '_' : ''
+      }${item}_FAILED`]: `${item}_${action}_FAILED`,
     }
     if (loading) {
-      block[`${item}_LOADING`] = `${item}_${constant}_LOADING`
+      block[`${item}_LOADING`] = `${item}_${action}_LOADING`
     }
 
     obj = {
@@ -53,57 +56,55 @@ const newTypeGen = ({ constant, crud, loading, action }) => {
   return TypeArr
 }
 
-const custypeGen = (optional, vars) => {
-  let Types = []
-  let TypeArr = []
-  if (optional) {
-    optional = optional.map((option) => {
-      return option.toUpperCase()
-    })
+const customTypeGenerator = (action, methods) => {
+  const upperCaseAction = action.toUpperCase()
 
-    Types = [...Types, ...optional]
-  }
-
-  let obj = {}
-  Types.forEach((item) => {
-    let block = {}
-    vars.forEach((variable) => {
-      block = {
-        ...block,
-        [`${item}_${variable.toUpperCase()}`]: `${item}_${variable.toUpperCase()}`,
-      }
-    })
-
-    obj = {
-      ...block,
-    }
+  let TypeArr = {}
+  methods.forEach((method) => {
+    TypeArr[
+      `${upperCaseAction}_${method.toUpperCase()}`
+    ] = `${upperCaseAction}_${method.toUpperCase()}`
   })
-  TypeArr = {
-    ...obj,
-  }
 
   return TypeArr
 }
-const initActions = ({ type, action = '', crud = false, loading = false }) => {
-  if (!type) {
-    throw new Error('Type is required')
+
+const generateActions = ({
+  method,
+  action = '',
+  crud = false,
+  loading = false,
+  unique = false,
+}) => {
+  if (!method) {
+    throw new Error('Method is required')
   }
   const types = newTypeGen({
-    constant: type.toUpperCase(),
-    type,
+    action: action.toUpperCase(),
     crud,
     loading,
-    action: action.toUpperCase(),
+    method: method.toUpperCase(),
+    unique,
   })
   const actions = actionGen(types)
   return [types, actions]
 }
-const customTypeGen = ({ type, actions }) => {
-  const types = custypeGen([type], actions)
-  const customActions = actionGen(types)
-  return [types, customActions]
+
+const customActions = ({ methods, action }) => {
+  if (!Array.isArray(methods)) {
+    throw new Error('Methods should be an Array')
+  }
+  if (!methods.length) {
+    throw new Error('Methods is required')
+  }
+  if (!action) {
+    throw new Error('Method is required')
+  }
+  const types = customTypeGenerator(action, methods)
+  const actions = actionGen(types)
+  return [types, actions]
 }
 module.exports = {
-  customTypeGen,
-  initActions,
+  generateActions,
+  customActions,
 }
