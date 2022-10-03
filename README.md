@@ -123,32 +123,32 @@ import { generateActions } from 'react_actions_generator';
 const [types, actions] = generateActions({
   action: 'projects',
   unique: true,
-  loading:true,
+  loading: true,
 
 })
 // result
 //types
 {
-  PROJECTS_CREATE_START: 'CREATE_PROJECTS_START',
-  PROJECTS_CREATE_SUCCESS: 'CREATE_PROJECTS_SUCCESS',
-  PROJECTS_CREATE_FAILED: 'CREATE_PROJECTS_FAILED',
-  CREATE_LOADING: 'CREATE_PROJECTS_LOADING',
-  PROJECTS_PATCH_START: 'PATCH_PROJECTS_START',
-  PROJECTS_PATCH_SUCCESS: 'PATCH_PROJECTS_SUCCESS',
-  PROJECTS_PATCH_FAILED: 'PATCH_PROJECTS_FAILED',
-  PATCH_LOADING: 'PATCH_PROJECTS_LOADING',
+  CREATE_PROJECTS_START: 'CREATE_PROJECTS_START',
+  CREATE_PROJECTS_SUCCESS: 'CREATE_PROJECTS_SUCCESS',
+  CREATE_PROJECTS_FAILED: 'CREATE_PROJECTS_FAILED',
+  CREATE_PROJECTS_LOADING: 'CREATE_PROJECTS_LOADING',
+  PATCH_PROJECTS_START: 'PATCH_PROJECTS_START',
+  PATCH_PROJECTS_SUCCESS: 'PATCH_PROJECTS_SUCCESS',
+  PATCH_PROJECTS_FAILED: 'PATCH_PROJECTS_FAILED',
+  PATCH_PROJECTS_LOADING: 'PATCH_PROJECTS_LOADING',
   ...
 }
 //actions
 {
-  projects_create_start: [Function (anonymous)],
-  projects_create_success: [Function (anonymous)],
-  projects_create_failed: [Function (anonymous)],
-  create_loading: [Function (anonymous)],
-  projects_patch_start: [Function (anonymous)],
-  projects_patch_success: [Function (anonymous)],
-  projects_patch_failed: [Function (anonymous)],
-  patch_loading: [Function (anonymous)],
+  create_projects_start: [Function (anonymous)],
+  create_projects_success: [Function (anonymous)],
+  create_projects_failed: [Function (anonymous)],
+  create_projects_loading: [Function (anonymous)],
+  patch_projects_start: [Function (anonymous)],
+  patch_projects_success: [Function (anonymous)],
+  patch_projects_failed: [Function (anonymous)],
+  patch_projects_loading: [Function (anonymous)],
   ...
 }
 ```

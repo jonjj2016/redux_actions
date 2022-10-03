@@ -41,7 +41,9 @@ const newTypeGen = ({ action, crud, loading, method, unique }) => {
       }FAILED`]: `${item}_${action}_FAILED`,
     }
     if (loading) {
-      block[`${item}_LOADING`] = `${item}_${action}_LOADING`
+      block[
+        `${item}_${unique ? action + '_' : ''}LOADING`
+      ] = `${item}_${action}_LOADING`
     }
 
     obj = {
