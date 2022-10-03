@@ -5,13 +5,37 @@
 #### CRUD ACTIONS
 
 basic usage
+create actions file
 
 ```JS
 import { generateActions } from 'react_actions_generator';
 
-const [types, actions] = generateActions({
+export const [types, actions] = generateActions({
   action: 'projects',
 })
+
+```
+
+inYour React Component
+
+```JS
+
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { actions } from './actions'
+
+const Component = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const payload = { name: 'John Doe' }
+    dispatch(actions.find_start(payload))
+  }, [])
+
+  return <div>Component</div>
+}
+
+export default Component
+
 
 ```
 
