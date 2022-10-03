@@ -76,8 +76,8 @@ const generateActions = ({
   loading = false,
   unique = false,
 }) => {
-  if (!method) {
-    throw new Error('Method is required')
+  if (!action) {
+    throw new Error('Action is required')
   }
   const types = newTypeGen({
     action: action.toUpperCase(),
